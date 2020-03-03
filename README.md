@@ -1,0 +1,2 @@
+# FATFS_SIMULATOR
+使用文件模拟磁盘，用于学习FATFS
