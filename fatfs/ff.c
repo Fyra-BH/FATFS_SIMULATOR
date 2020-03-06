@@ -22,7 +22,6 @@
 #include "ff.h"			/* Declarations of FatFs API */
 #include "diskio.h"		/* Declarations of device I/O functions */
 
-#include <stdio.h>
 
 /*--------------------------------------------------------------------------
 
@@ -5937,11 +5936,11 @@ FRESULT f_mkfs (
 #endif
 			{	/* Partitioning is in MBR */
 				if (sz_vol > N_SEC_TRACK) {
-					b_vol = N_SEC_TRACK; sz_vol -= b_vol;	/* Estimated partition offset and size */		
+					b_vol = N_SEC_TRACK; sz_vol -= b_vol;	/* Estimated partition offset and size */
 				}
 			}
 		}
-	}	
+	}
 	if (sz_vol < 128) LEAVE_MKFS(FR_MKFS_ABORTED);	/* Check if volume size is >=128s */
 
 	/* Now start to create a FAT volume at b_vol and sz_vol */

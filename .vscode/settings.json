@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "ftest.h": "c",
+        "mydisk.h": "c",
+        "ff.h": "c"
+    }
+}

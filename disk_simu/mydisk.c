@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-03-03 10:12:31
- * @LastEditTime: 2020-03-03 15:09:44
+ * @LastEditTime: 2020-03-07 03:27:20
  * @LastEditors: Please set LastEditors
  * @Description: 使用文件来模拟磁盘
  * @FilePath: /FAT_TEST/disk_simu/mydisk.c
@@ -22,6 +22,17 @@ disk_dev flash=
     4*1024*1024/4096
 };
 
+/**
+ * 2M的SD卡可真是小呢
+*/
+disk_dev sdcard=
+{
+    "SD_2M",
+    512,
+    1,
+    1*1024*1024/512,
+};
+
 
 /**
  * 函数名   fake_disk_init
@@ -39,7 +50,7 @@ uint8_t fake_disk_init(disk_dev *disk)
     my_memset(pad,0xff,disk->sector_size);
     for (int i = 0; i < disk->sector_num; i++){
          size=fwrite(pad,disk->sector_size,1,file);
-         if(size!=1)return -1;//写出错         
+         if(size!=1)return -1;//写出错      
     }
     fclose(file);
     my_free(pad);
@@ -47,8 +58,7 @@ uint8_t fake_disk_init(disk_dev *disk)
 }
 
 
-    // uint8_t (*read_sector)(uint8_t *buff,uint32_t sector_addr,uint32_t count);
-    // uint8_t (*write_sector)(uint8_t *buff,uint32_t sector_addr,uint32_t count); 
+
 /**
  * @name:   read_sector
  * @func:   read sectors

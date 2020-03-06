@@ -3,7 +3,7 @@ TARGET :=out
 #build 目录
 BUILD_DIR=build
 
-CC :=gcc
+CC :=gcc-7
 
 SZ :=size
 # 头文件目录
@@ -19,14 +19,21 @@ disk_simu \
 ./
 
 #全局弘定义 
-DEFS :=-DDEBUG \
+DEFS :=\
+-DDEBUG \
 
-INCLUDE:= $(patsubst %, -I %, $(INCDIRS))
+INCLUDE:= $(patsubst %, -I%, $(INCDIRS))
 
 CFILES:=$(foreach dir,$(SRCDIRS),$(wildcard $(dir)/*.c))
 # 库
 LIBS:=\
 # -lpthread
+
+# 标志
+CFLAGS:=\
+-g \
+-m32 \
+# -fno-stack-protector
 
 OBJECTS:=$(addprefix $(BUILD_DIR)/,$(notdir $(CFILES:.c=.o)))
 
@@ -37,10 +44,10 @@ OBJECTS:=$(addprefix $(BUILD_DIR)/,$(notdir $(CFILES:.c=.o)))
 VPATH:=$(SRCDIRS)
 
 $(BUILD_DIR)/%.o: %.c Makefile | $(BUILD_DIR)
-	$(CC) $(DEFS) -c -g -m32 $<  $(INCLUDE) -o $@
+	$(CC) $(DEFS) -c  $(CFLAGS) $<  $(INCLUDE) -o $@
 
 $(TARGET):$(OBJECTS)
-	$(CC) $(OBJECTS) -m32 -o $@ $(LIBS)
+	$(CC) $(OBJECTS) $(DEFS) $(CFLAGS) -o $@ $(LIBS)
 
 $(BUILD_DIR):
 	mkdir $@
