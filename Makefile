@@ -3,7 +3,7 @@ TARGET :=out
 #build 目录
 BUILD_DIR=build
 
-CC :=gcc-7
+CC :=gcc
 
 SZ :=size
 # 头文件目录
@@ -46,7 +46,7 @@ VPATH:=$(SRCDIRS)
 $(BUILD_DIR)/%.o: %.c Makefile | $(BUILD_DIR)
 	$(CC) $(DEFS) -c  $(CFLAGS) $<  $(INCLUDE) -o $@
 
-$(TARGET):$(OBJECTS)
+$(BUILD_DIR)/$(TARGET):$(OBJECTS)
 	$(CC) $(OBJECTS) $(DEFS) $(CFLAGS) -o $@ $(LIBS)
 
 $(BUILD_DIR):
@@ -55,7 +55,6 @@ $(BUILD_DIR):
 clean:
 # echo CFILES=$(CFILES)
 	rm -rf $(BUILD_DIR)
-	rm -f $(TARGET)
 
 
 
