@@ -53,7 +53,6 @@ $(BUILD_DIR):
 	mkdir $@
 
 clean:
-# echo CFILES=$(CFILES)
 	rm -rf $(BUILD_DIR)
 
 
