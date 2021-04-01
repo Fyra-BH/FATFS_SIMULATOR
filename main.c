@@ -14,7 +14,6 @@
 #include "ff.h"
 #include "ftest.h"
 
-
 int main(int argc,char *argv[])
 {
 	fat_test();

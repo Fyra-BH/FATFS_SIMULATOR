@@ -1,5 +1,5 @@
 # 目标
-TARGET :=out
+TARGET :=main
 #build 目录
 BUILD_DIR=build
 
@@ -46,7 +46,7 @@ VPATH:=$(SRCDIRS)
 $(BUILD_DIR)/%.o: %.c Makefile | $(BUILD_DIR)
 	$(CC) $(DEFS) -c  $(CFLAGS) $<  $(INCLUDE) -o $@
 
-$(BUILD_DIR)/$(TARGET):$(OBJECTS)
+$(TARGET):$(OBJECTS)
 	$(CC) $(OBJECTS) $(DEFS) $(CFLAGS) -o $@ $(LIBS)
 
 $(BUILD_DIR):
@@ -54,6 +54,7 @@ $(BUILD_DIR):
 
 clean:
 	rm -rf $(BUILD_DIR)
+	rm -f $(TARGET)
 
 
 

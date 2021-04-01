@@ -16,7 +16,7 @@
 // uint64_t sector_num;
 disk_dev flash=
 {
-    "FLASH_4M",
+    "FLASH_4M.bin",
     4096,
     1,
     4*1024*1024/4096
